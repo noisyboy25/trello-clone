@@ -8,25 +8,20 @@ import {
   Container,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
+import { CardInfo } from './App';
 
-type CardInfo = {
-  id: number;
-  title: string;
-  body: string;
-};
-
-const CardTest = ({ posts }: { posts: CardInfo[] }) => {
-  const [cards, setCards] = useState<CardInfo[]>(posts);
+const CardTest = (props: { cards: CardInfo[] }) => {
+  const [cards, setCards] = useState<CardInfo[]>(props.cards);
 
   useEffect(() => {
-    setCards(posts);
-  }, [posts]);
+    setCards(props.cards);
+  }, [props.cards]);
 
   const spawnCard = (cardInfo?: CardInfo) => {
     const card = cardInfo || {
       id: Math.floor(Math.random() * 1000000),
       title: 'Test',
-      body: 'Test description',
+      description: 'Test description',
     };
 
     setCards((prev) => [...prev, card]);
@@ -40,7 +35,7 @@ const CardTest = ({ posts }: { posts: CardInfo[] }) => {
             <Card key={card.id}>
               <CardHeader>{card.title}</CardHeader>
               <CardBody>
-                <Text>{card.body}</Text>
+                <Text>{card.description}</Text>
               </CardBody>
             </Card>
           ))}
