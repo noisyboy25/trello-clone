@@ -1,5 +1,5 @@
 import './App.css';
-import { Button, Flex } from '@chakra-ui/react';
+import { Button, HStack } from '@chakra-ui/react';
 import CardList from './CardTest';
 import { useEffect, useState } from 'react';
 import { randomId } from './util';
@@ -65,17 +65,15 @@ function App() {
 
   return (
     <>
-      <Flex>
+      <HStack align={'flex-start'} gap={'1em'}>
         {cards.length > 0 && (
           <>
             {lists.length > 0 &&
-              lists.map((list) => (
-                <CardList cards={list.cards} key={list.id} />
-              ))}
+              lists.map((list) => <CardList listInfo={list} key={list.id} />)}
             <Button onClick={() => spawnList()}>+</Button>
           </>
         )}
-      </Flex>
+      </HStack>
     </>
   );
 }

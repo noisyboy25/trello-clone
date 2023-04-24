@@ -1,20 +1,13 @@
-import {
-  Button,
-  Card,
-  Text,
-  CardBody,
-  VStack,
-  Container,
-} from '@chakra-ui/react';
+import { Button, Card, Text, CardBody, VStack, Box } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import { CardInfo } from './App';
+import { CardInfo, ListInfo } from './App';
 
-const CardTest = (props: { cards: CardInfo[] }) => {
-  const [cards, setCards] = useState<CardInfo[]>(props.cards);
+const CardTest = ({ listInfo }: { listInfo: ListInfo }) => {
+  const [cards, setCards] = useState<CardInfo[]>(listInfo.cards);
 
   useEffect(() => {
-    setCards(props.cards);
-  }, [props.cards]);
+    setCards(listInfo.cards);
+  }, [listInfo.cards]);
 
   const spawnCard = (cardInfo?: CardInfo) => {
     const card = cardInfo || {
@@ -28,10 +21,13 @@ const CardTest = (props: { cards: CardInfo[] }) => {
 
   return (
     <>
-      <Container>
-        <VStack>
+      <Box shadow={'md'} borderRadius={'15'} p={'1.5em'}>
+        <Box fontWeight={'semibold'} textAlign={'start'} m={'1em'}>
+          {listInfo.title}
+        </Box>
+        <VStack w={'16em'} m={'1em'}>
           {cards.map((card) => (
-            <Card key={card.id}>
+            <Card w={'16em'} key={card.id}>
               {/* <CardHeader>{card.title}</CardHeader> */}
               <CardBody>
                 <Text>{card.description}</Text>
@@ -42,7 +38,7 @@ const CardTest = (props: { cards: CardInfo[] }) => {
         <Button mt={'0.5em'} onClick={() => spawnCard()}>
           +
         </Button>
-      </Container>
+      </Box>
     </>
   );
 };
