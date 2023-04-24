@@ -3,7 +3,6 @@ import {
   Card,
   Text,
   CardBody,
-  CardHeader,
   VStack,
   Container,
 } from '@chakra-ui/react';
@@ -33,7 +32,7 @@ const CardTest = (props: { cards: CardInfo[] }) => {
         <VStack>
           {cards.map((card) => (
             <Card key={card.id}>
-              <CardHeader>{card.title}</CardHeader>
+              {/* <CardHeader>{card.title}</CardHeader> */}
               <CardBody>
                 <Text>{card.description}</Text>
               </CardBody>
