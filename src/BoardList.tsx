@@ -1,8 +1,9 @@
-import { Button, Card, Text, CardBody, VStack, Box } from '@chakra-ui/react';
+import { Button, VStack, Box } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { CardInfo, ListInfo } from './App';
+import BoardCard from './BoardCard';
 
-const CardTest = ({ listInfo }: { listInfo: ListInfo }) => {
+const BoardList = ({ listInfo }: { listInfo: ListInfo }) => {
   const [cards, setCards] = useState<CardInfo[]>(listInfo.cards);
 
   useEffect(() => {
@@ -27,12 +28,7 @@ const CardTest = ({ listInfo }: { listInfo: ListInfo }) => {
         </Box>
         <VStack w={'16em'} m={'1em'}>
           {cards.map((card) => (
-            <Card w={'16em'} key={card.id}>
-              {/* <CardHeader>{card.title}</CardHeader> */}
-              <CardBody>
-                <Text>{card.description}</Text>
-              </CardBody>
-            </Card>
+            <BoardCard cardInfo={card} key={card.id} />
           ))}
         </VStack>
         <Button mt={'0.5em'} onClick={() => spawnCard()}>
@@ -43,4 +39,4 @@ const CardTest = ({ listInfo }: { listInfo: ListInfo }) => {
   );
 };
 
-export default CardTest;
+export default BoardList;

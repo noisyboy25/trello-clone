@@ -1,6 +1,5 @@
-import './App.css';
 import { Button, HStack } from '@chakra-ui/react';
-import CardList from './CardTest';
+import BoardList from './BoardList';
 import { useEffect, useState } from 'react';
 import { randomId } from './util';
 
@@ -69,7 +68,7 @@ function App() {
         {cards.length > 0 && (
           <>
             {lists.length > 0 &&
-              lists.map((list) => <CardList listInfo={list} key={list.id} />)}
+              lists.map((list) => <BoardList listInfo={list} key={list.id} />)}
             <Button onClick={() => spawnList()}>+</Button>
           </>
         )}
