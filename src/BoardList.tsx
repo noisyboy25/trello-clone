@@ -26,7 +26,7 @@ const BoardList = ({ listInfo }: { listInfo: ListInfo }) => {
         <Box fontWeight={'semibold'} textAlign={'start'} m={'1em'}>
           {listInfo.title}
         </Box>
-        <VStack w={'16em'} m={'1em'}>
+        <VStack w={'16em'}>
           {cards.map((card) => (
             <BoardCard cardInfo={card} key={card.id} />
           ))}

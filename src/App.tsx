@@ -64,7 +64,7 @@ function App() {
 
   return (
     <>
-      <HStack align={'flex-start'} gap={'1em'}>
+      <HStack align={'flex-start'} gap={'1em'} p={'1em'}>
         {cards.length > 0 && (
           <>
             {lists.length > 0 &&
