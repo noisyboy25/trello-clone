@@ -22,7 +22,6 @@ export type ListInfo = {
 };
 
 function App() {
-  const [cards, setCards] = useState<CardInfo[]>([]);
   const [lists, setLists] = useState<ListInfo[]>([]);
 
   useEffect(() => {
@@ -36,7 +35,6 @@ function App() {
         description: post.body,
       }));
       if (!ignore) {
-        setCards(cards);
         setLists([
           {
             id: 1,
@@ -61,14 +59,36 @@ function App() {
       { id: randomId(), title: 'New List', cards: [] },
     ]);
   };
+  const spawnCard = (listId: number, cardInfo?: CardInfo) => {
+    const card = cardInfo || {
+      id: Math.floor(Math.random() * 1000000),
+      title: 'Test',
+      description: 'Test description',
+    };
+
+    setLists((prev) =>
+      prev.map((l) => {
+        if (l.id === listId) {
+          return { ...l, cards: [...l.cards, card] };
+        }
+        return l;
+      })
+    );
+  };
 
   return (
     <>
       <HStack align={'flex-start'} gap={'1em'} p={'1em'}>
-        {cards.length > 0 && (
+        {lists.length > 0 && (
           <>
             {lists.length > 0 &&
-              lists.map((list) => <BoardList listInfo={list} key={list.id} />)}
+              lists.map((list) => (
+                <BoardList
+                  listInfo={list}
+                  key={list.id}
+                  spawnCard={() => spawnCard(list.id)}
+                />
+              ))}
             <Button onClick={() => spawnList()}>+</Button>
           </>
         )}
